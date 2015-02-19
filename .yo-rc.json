@@ -1,0 +1,37 @@
+{
+  "generator-rf": {
+    "appname": "droptags",
+    "mkTestDirs": true,
+    "description": "A React/Flux app generate by RF, powered with coffee-script",
+    "dialect": "coffee-script",
+    "scriptSuffix": ".coffee",
+    "testFileExtensions": [
+      "js",
+      "coffee"
+    ],
+    "dialectModuleFileExtensions": [
+      "js",
+      "json",
+      "coffee"
+    ],
+    "stylesheet": "SASS",
+    "stylesheetSuffix": ".sass",
+    "devDependencies": {
+      "css-loader": "*",
+      "file-loader": "*",
+      "jest-cli": "*",
+      "react-hot-loader": "^1.1.4",
+      "react-tools": "^0.12.2",
+      "style-loader": "*",
+      "webpack-dev-server": "^1.7.0",
+      "webpack": "^1.4.14",
+      "cjsx-loader": "^1.1.0",
+      "coffee-loader": "*",
+      "coffee-script": "*",
+      "sass-loader": "*"
+    },
+    "dialectTest": ".coffee",
+    "dialectLoader": "react-hot!coffee!cjsx",
+    "stylesheetLoader": "style!css!sass?indentedSyntax=true&outputStyle=expanded"
+  }
+}
