@@ -4,10 +4,11 @@
   "description": "A React/Flux app generate by RF, powered with coffee-script",
   "main": "build/bundle.js",
   "dependencies": {
-    "reflux": "^0.2.5",
     "object-assign": "^2.0.0",
     "react": "^0.12.2",
-    "react-router-component": "^0.23.2"
+    "react-router-component": "^0.23.2",
+    "reflux": "^0.2.5",
+    "superagent": "^0.21.0"
   },
   "devDependencies": {
     "css-loader": "*",
@@ -22,7 +23,7 @@
     "coffee-loader": "*",
     "coffee-script": "*",
     "sass-loader": "*"
-},
+  },
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server --colors --content-base ./build",
@@ -33,14 +34,14 @@
   "jest": {
     "scriptPreprocessor": "<rootDir>/preprocessor.js",
     "testFileExtensions": [
-    "js",
-    "coffee"
-],
+      "js",
+      "coffee"
+    ],
     "moduleFileExtensions": [
-    "js",
-    "json",
-    "coffee"
-],
+      "js",
+      "json",
+      "coffee"
+    ],
     "globals": {
       "SCRIPTS": "<rootDir>/src/scripts"
     },
