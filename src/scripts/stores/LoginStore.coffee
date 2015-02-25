@@ -12,6 +12,10 @@ LoginStore = Reflux.createStore(
     UserStorage.setCurrentUser(uid, accessToken)
     this.trigger()
 
+  logout: ->
+    UserStorage.destroyCurrentUser()
+    this.trigger()
+
   currentUser: ->
     UserStorage.currentUser()
 )

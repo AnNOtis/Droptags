@@ -3,12 +3,15 @@ React = require('react')
 Header = React.createClass
   render: ->
     <div>
-      <span>DropTags</span>
+      <strong>DropTags | </strong>
       {
         if this.props.user
-          <span>{this.props.user.uid}</span>
-          <button>sign out</button>
+          <span>
+            <span>{this.props.user.uid}</span>
+            <button onClick={this.props.onLogout}>sign out</button>
+          </span>
       }
     </div>
+
 
 module.exports = Header

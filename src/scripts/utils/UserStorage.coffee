@@ -2,19 +2,21 @@ Store = require('store')
 
 UserStorage = {
   get: (key) ->
+    return unless @_userKey
     Store.get(@_userKey + key)
   set: (key, value) ->
+    return unless @_userKey
     Store.set(@_userKey + key, value)
   remove: () ->
+    return unless @_userKey
     Store.remove(@_userKey + key)
 
   _userKey: ->
-    if !window['__current_user_key_cache']
-      window['__current_user_key_cache'] = Store.get('__current_user_key')
-
-    window['__current_user_key_cache'] + '_'
+    key = Store.get('__current_user_key')
 
   currentUser: ->
+    if not Store.get('__current_user_key')
+      return null
     @get('info')
 
   setCurrentUser: (uid, accessToken) ->
@@ -25,7 +27,6 @@ UserStorage = {
     )
 
   destroyCurrentUser: ->
-    window['__current_user_key_cache'] = null
     Store.remove('__current_user_key')
 }
 

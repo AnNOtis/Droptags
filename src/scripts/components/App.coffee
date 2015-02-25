@@ -14,7 +14,8 @@ LoginArea = require('./LoginArea.coffee')
 
 App = React.createClass
   mixins: [
-    Reflux.listenTo(LoginStore, 'onSuccessAuth')
+    Reflux.listenTo(LoginStore, 'onSuccessAuth'),
+    Reflux.listenTo(LoginStore, 'onLogout')
   ]
 
   getInitialState: ->
@@ -27,15 +28,23 @@ App = React.createClass
 
   render: ->
     <div>
-      <Header user={@state.user}/>
-      { <LoginArea onSignedIn={@_onSignedIn}/> unless @state.user}
+      <Header user={@state.user} onLogout={@_logout}/>
+      { <LoginArea onSignedIn={@_signedIn}/> unless @state.user}
       <Footer />
     </div>
 
-  _onSignedIn: ->
+  _signedIn: ->
     LoginAction.login()
 
+  _logout: ->
+    LoginAction.logout()
+
   onSuccessAuth: ->
+    @setState(
+      user: LoginStore.currentUser()
+    )
+
+  onLogout: ->
     @setState(
       user: LoginStore.currentUser()
     )
