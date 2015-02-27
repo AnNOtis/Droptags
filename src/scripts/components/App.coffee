@@ -7,10 +7,11 @@ LoginStore = require('../stores/LoginStore.coffee')
 # ACTION
 LoginAction = require('../actions/LoginAction.coffee')
 
-# VIEW
+# COMPONENT
 Header = require('./Header.coffee')
 Footer = require('./Footer.coffee')
 LoginArea = require('./LoginArea.coffee')
+BrowseWidget = require('./BrowseWidget.coffee')
 
 App = React.createClass
   mixins: [
@@ -30,6 +31,7 @@ App = React.createClass
     <div>
       <Header user={@state.user} onLogout={@_logout}/>
       { <LoginArea onSignedIn={@_signedIn}/> unless @state.user}
+      <BrowseWidget />
       <Footer />
     </div>
 
