@@ -15,8 +15,7 @@ BrowseWidget = require('./BrowseWidget.coffee')
 
 App = React.createClass
   mixins: [
-    Reflux.listenTo(LoginStore, 'onSuccessAuth'),
-    Reflux.listenTo(LoginStore, 'onLogout')
+    Reflux.listenTo(LoginStore, '_onLoginStatusChanged'),
   ]
 
   getInitialState: ->
@@ -30,8 +29,12 @@ App = React.createClass
   render: ->
     <div>
       <Header user={@state.user} onLogout={@_logout}/>
-      { <LoginArea onSignedIn={@_signedIn}/> unless @state.user}
-      <BrowseWidget />
+      {
+        if @state.user
+          <BrowseWidget />
+        else
+          <LoginArea onSignedIn={@_signedIn}/>
+      }
       <Footer />
     </div>
 
@@ -41,13 +44,8 @@ App = React.createClass
   _logout: ->
     LoginAction.logout()
 
-  onSuccessAuth: ->
-    @setState(
-      user: LoginStore.currentUser()
-    )
-
-  onLogout: ->
-    @setState(
+  _onLoginStatusChanged: ->
+    this.setState(
       user: LoginStore.currentUser()
     )
 

@@ -1,5 +1,4 @@
 Reflux = require('reflux')
-request = require('superagent')
 
 DROPBOX_AUTH_URL = 'https://www.dropbox.com/1/oauth2/authorize'
 DROPBOX_AUTH_TYPE = 'token'
