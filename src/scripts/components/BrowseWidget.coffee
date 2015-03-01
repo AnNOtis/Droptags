@@ -1,9 +1,12 @@
+require('../../assets/stylesheets/components/BrowseWidget.sass')
+
 React = require('react')
 
 ResourceStore = require('../stores/ResourceStore.coffee')
 
 BrowseAction = require('../actions/BrowseAction.coffee')
 
+FileSearcher = require('./FileSearcher.coffee')
 BrowsePath = require('./BrowsePath.coffee')
 BrowseList = require('./BrowseList.coffee')
 BrowseDetail = require('./BrowseDetail.coffee')
@@ -16,6 +19,7 @@ BrowseWidget = React.createClass
     {
       path: '/'
       currentFocusContent: null
+      focusedContent: -1
     }
 
   componentDidMount: ->
@@ -23,14 +27,18 @@ BrowseWidget = React.createClass
     ResourceStore.listen(this._onMetaChanged)
 
   render: ->
-    <div>
-      <BrowsePath path={this.state.path} onPathChanged={this._onPathChanged}/>
-      <BrowseList
-        contents={this.state.contents}
-        onContentFocus={this._onContentFocused}
-        onPathChanged={this._onPathChanged}
-      />
-      <BrowseDetail content={this.state.currentFocusContent} />
+    <div className='BrowseWidget'>
+      <FileSearcher />
+      <div className='FileBrowser'>
+        <BrowsePath path={this.state.path} onPathChanged={this._onPathChanged}/>
+        <BrowseList
+          contents={this.state.contents}
+          onContentFocus={this._onContentFocused}
+          onPathChanged={this._onPathChanged}
+          focusedContent={this.state.focusedContent}
+        />
+        <BrowseDetail content={this.state.currentFocusContent} />
+      </div>
     </div>
 
   _onPathChanged: (path) ->
@@ -39,9 +47,17 @@ BrowseWidget = React.createClass
   _onMetaChanged: ->
     meta = getCurrentMeta()
     meta.contents ||= []
-    this.setState(meta)
+    this.setState(
+      _.assign(meta,
+        currentFocusContent: null
+        focusedContent: -1
+      )
+    )
 
-  _onContentFocused: (content)->
-    this.setState(currentFocusContent: content)
+  _onContentFocused: (order, content)->
+    this.setState(
+      currentFocusContent: content
+      focusedContent: order
+    )
 
 module.exports = BrowseWidget

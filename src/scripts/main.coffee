@@ -1,5 +1,5 @@
 require('../index.html')
-require('../assets/stylesheets/style.sass')
+require('../assets/stylesheets/application.sass')
 
 # Require assets here.
 # require('../assets/product.png')

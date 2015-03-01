@@ -1,12 +1,24 @@
-React = require('react')
+require('../../assets/stylesheets/components/File.sass')
+
+React = require('react/addons')
+cx = React.addons.classSet
 
 File = React.createClass
   propTypes:
     info: React.PropTypes.object.isRequired
 
   render: ->
-    <div onClick={this._handleFileClick}>
-      { if this.props.isFocused then ">" else "|"} -- {this._fileName()}
+    fileClasses = cx(
+      'File': true
+      'is-focus': this.props.isFocused
+    )
+
+    <div
+      className={fileClasses}
+      onClick={this._handleFileClick}>
+      <a className='File-name'>
+        {this._fileName()}
+      </a>
     </div>
 
   _fileName: ->

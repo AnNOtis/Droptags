@@ -1,17 +1,21 @@
+require('../../assets/stylesheets/components/Header.sass')
+
 React = require('react')
 
 Header = React.createClass
   render: ->
-    <div>
-      <strong>DropTags | </strong>
-      {
-        if this.props.user
-          <span>
-            <span>{this.props.user.uid}</span>
-            <button onClick={this.props.onLogout}>sign out</button>
-          </span>
-      }
-    </div>
+    <header>
+      <div className='container'>
+        <h1 className='Header-logo'>DropTags</h1>
+        {
+          if this.props.user
+            <nav>
+              <span>{this.props.user.uid}</span>
+              <button onClick={this.props.onLogout}>sign out</button>
+            </nav>
+        }
+      </div>
+    </header>
 
 
 module.exports = Header

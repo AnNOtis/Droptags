@@ -1,3 +1,5 @@
+require('../../assets/stylesheets/components/File.sass')
+
 React = require('react')
 
 Directory = React.createClass
@@ -5,7 +7,11 @@ Directory = React.createClass
     info: React.PropTypes.object.isRequired
 
   render: ->
-    <div onDoubleClick={this._handleDoubleClick}>◇ {this._dirName()}</div>
+    <div
+      className='File'
+      onDoubleClick={this._handleDoubleClick}>
+      ◇ {this._dirName()}
+    </div>
 
   _dirName: ->
     (this.props.info.path).replace(/.*\//g, "")

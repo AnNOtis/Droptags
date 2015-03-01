@@ -29,12 +29,14 @@ App = React.createClass
   render: ->
     <div>
       <Header user={@state.user} onLogout={@_logout}/>
-      {
-        if @state.user
-          <BrowseWidget />
-        else
-          <LoginArea onSignedIn={@_signedIn}/>
-      }
+      <div className='container'>
+        {
+          if @state.user
+            <BrowseWidget />
+          else
+            <LoginArea onSignedIn={@_signedIn}/>
+        }
+      </div>
       <Footer />
     </div>
 

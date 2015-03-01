@@ -1,3 +1,5 @@
+require('../../assets/stylesheets/components/BrowsePath.sass')
+
 React = require('react')
 
 BrowsePath = React.createClass
@@ -8,11 +10,15 @@ BrowsePath = React.createClass
     path: '/'
 
   render: ->
-    <div>
-      <h2>{this.props.path}</h2>
+    <div className='BrowsePath'>
+      <h2 className='BrowsePath-path'>{this.props.path}</h2>
       {
         if this.props.path != "/"
-          <span onClick={this._goToParent}>上一層</span>
+          <span
+            className='BrowsePath-goToParentBtn'
+            onClick={this._goToParent}>
+            上一層
+          </span>
       }
     </div>
 

@@ -1,0 +1,32 @@
+// -------------------------------------
+//   COLOR SCHEMA
+// -------------------------------------
+$smokewhite: #f7fafc
+$primary-blue: #007ae2
+$gray: #8197a7
+$black: #333333
+$paper: #fffae5
+
+// -------------------------------------
+//   COLOR SETTINGS
+// -------------------------------------
+$c-text: $black
+$c-title: $black
+$c-subTitle: $gray
+$c-link: $primary-blue
+$c-border: #eeeeee
+$c-background: $smokewhite
+$c-highlight: $primary-blue
+$c-hover: $paper
+
+// -------------------------------------
+//   FONT BASIC
+// -------------------------------------
+
+$b-fontSize: 16px
+$b-lineHeight: 1.5
+
+$b-basicUnit: $b-fontSize * $b-lineHeight
+
+@function basic-unit($number)
+  @return $b-basicUnit * $number
